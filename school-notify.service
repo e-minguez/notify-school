@@ -1,0 +1,16 @@
+[Unit]
+Description=School Notification Bridge
+# Only start after the graphical session is ready (so DBus is available)
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+# ADJUST THESE PATHS to match your setup
+WorkingDirectory=%h/bin/notify-school
+ExecStart=uv run notify-school.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=graphical-session.target
